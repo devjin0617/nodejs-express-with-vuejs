@@ -1,0 +1,80 @@
+#!/usr/bin/env node
+
+const cmd = process.argv[2];
+const name = process.argv[3];
+
+if(!cmd && !name) {
+    console.log('usage: vuecon [-h] command filename')
+    return;
+}
+
+if(cmd == '-h') {
+    console.log('\n  usage: vuecon [-h] command filename');
+    console.log('\n  command types:');
+    console.log('\n    vue\t\tcreate vue file');
+    console.log('    plugin\tcreate vue plugin file');
+    console.log('    router\tvue route setting');
+
+    console.log('\n');
+    return;
+}
+
+if(!name) {
+    console.log('usage: vuecon [-h] command filename')
+    return;
+}
+
+const fs = require('fs');
+const readline = require('readline');
+const scanf = require('scanf');
+
+var iTemplate = `import {name} from './components/{name}.vue'`;
+
+switch(cmd) {
+    case 'vue':
+
+        var vue = fs.readFileSync(`${__dirname}/vuecon-lib/vue.template.vc`, 'utf8');
+        vue = vue.replace(/{id}/g, camelCaseToDash(name));
+
+        var componentList = [];
+
+        console.log('what is component name? (exit is just enter)');
+        var n = 1;
+        while(true) {
+            console.log(`${n++}:`);
+            var input = scanf('%s');
+
+            if(!input) {
+                console.log(`create to ${componentList.join(', ')} components`)
+                break;
+            }
+
+            componentList.push(input);
+            
+        }
+
+        if(componentList.length > 0) {
+            vue = vue.replace('/**components**/', componentList.join(',\n\t\t'));
+
+            for(var i in componentList) {
+                componentList[i] = iTemplate.replace(/{name}/g, componentList[i]);
+            }
+            vue = vue.replace('/**component**/', componentList.join('\n'));
+        }
+
+        fs.writeFileSync(`./src/${name}.vue`, vue);
+
+        console.log(`make success :)`);
+        console.log(`path:\n${__dirname}/src/${name}.vue\n`);
+        break;
+    case 'plugin':
+        break;
+    case 'router':
+        break;
+    default:
+        break;
+}
+
+function camelCaseToDash(str) {
+    return str.replace( /([a-z])([A-Z])/g, '$1-$2' ).toLowerCase();
+}
