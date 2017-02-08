@@ -1,0 +1,22 @@
+<template>
+  <div id="{id}">
+    <span>{{ msg }}</span>
+  </div>
+</template>
+
+<script>
+/**import**/
+/**component**/
+
+export default {
+  name: '{id}',
+  data () {
+    return {
+      msg: 'Welcome to Your Vue.js App With Vuecon'
+    }
+  },
+  components: {
+    /**components**/
+  }
+}
+</script>
