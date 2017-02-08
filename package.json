@@ -1,22 +1,25 @@
 {
   "name": "express-with-vuejs",
-  "version": "0.0.0",
+  "description": "node.js express with vuejs example project",
+  "author": "devjin0617@gmail.com",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "start:production": "npm run webpack:build && NODE_ENV=production node ./bin/www",
     "webpack": "cross-env NODE_ENV=development webpack-dev-server --inline --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "webpack:build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "body-parser": "~1.15.1",
+    "body-parser": "~1.16.0",
     "cookie-parser": "~1.4.3",
-    "debug": "~2.2.0",
+    "debug": "~2.6.0",
+    "express": "~4.14.1",
     "ejs": "~2.4.1",
-    "element-ui": "^1.1.6",
-    "express": "~4.13.4",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0",
-    "vue": "^2.1.0"
+    "serve-favicon": "~2.3.2",
+    "vue": "^2.1.0",
+    "element-ui": "^1.1.6"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
@@ -28,7 +31,7 @@
     "file-loader": "^0.9.0",
     "vue-loader": "^10.0.0",
     "vue-template-compiler": "^2.1.0",
-    "webpack": "^2.1.0-beta.25",
-    "webpack-dev-server": "^2.1.0-beta.9"
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.2.0"
   }
 }
