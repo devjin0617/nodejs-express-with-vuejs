@@ -5,7 +5,7 @@ module.exports = {
     entry: './src/main.js',
     output: {
         path: path.resolve(__dirname, './public/dist'),
-        publicPath: '/dist/',
+        publicPath: process.env.NODE_ENV=='production'?'/dist/':'http://localhost:8080/dist/',
         filename: 'build.js'
     },
     module: {
@@ -28,13 +28,6 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/
-            },
-            {
-                test: /\.(png|jpg|gif|svg)$/,
-                loader: 'file-loader',
-                options: {
-                    name: '[name].[ext]?[hash]'
-                }
             },
             {
                 test: /\.css$/,
