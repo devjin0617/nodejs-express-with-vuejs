@@ -37,7 +37,7 @@ npm run start:production
 
 # 개발예정
 
-- 기본설정관련 개발진행
+~~- 기본설정관련 개발진행(완료)~~
 - Element UI 반영하기
 - vue관련 라이브러리 추가 및 연결해보기
 - DB 연결해보기
