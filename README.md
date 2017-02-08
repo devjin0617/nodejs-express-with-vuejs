@@ -15,13 +15,23 @@
 git clone https://github.com/devjin0617/nodejs-express-with-vuejs.git
 cd /path/to/project
 npm i
+```
 
+### 개발모드
+```
 // webpack server
 npm run webpack
 
 // webpage server (node.js)
 npm run start
 ```
+
+### 배포모드
+```
+// webpack 빌드와 서버실행을 동시에 진행합니다.
+npm run start:production
+```
+
 위와 같이 실행하신 후에 `http://localhost:3000`으로 접속합니다.
 
 
