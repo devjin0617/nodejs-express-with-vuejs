@@ -8,7 +8,8 @@
     "start": "node ./bin/www",
     "start:production": "npm run webpack:build && NODE_ENV=production node ./bin/www",
     "webpack": "cross-env NODE_ENV=development webpack-dev-server --inline --hot",
-    "webpack:build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "webpack:build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "beautify": "eslint --fix ."
   },
   "dependencies": {
     "body-parser": "~1.16.0",
@@ -27,7 +28,12 @@
     "babel-preset-es2015": "^6.0.0",
     "cross-env": "^3.0.0",
     "css-loader": "^0.25.0",
+    "eslint": "^3.15.0",
+    "eslint-config-vue": "^2.0.2",
+    "eslint-plugin-es-beautifier": "^1.0.1",
+    "eslint-plugin-vue": "^2.0.1",
     "file-loader": "^0.9.0",
+    "lodash": "^4.17.4",
     "scanf": "^0.7.3",
     "style-loader": "^0.13.1",
     "vue-loader": "^10.0.0",

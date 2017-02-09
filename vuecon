@@ -26,9 +26,11 @@ if(!name) {
 
 const fs = require('fs');
 const readline = require('readline');
-const scanf = require('scanf');
+const scanf = require('scanf'); 
+const config = require('./vuecon.config');
+const _ = require('lodash');
 
-var iTemplate = `import {name} from './components/{name}.vue'`;
+let iTemplate = `import {name} from './components/{name}.vue'`;
 
 switch(cmd) {
     case 'vue':
@@ -39,11 +41,13 @@ switch(cmd) {
         var componentList = [];
 
         console.log('what is component name? (exit is just enter)');
-        var n = 1;
-        while(true) {
+
+        _.mapObject(config.bash, (value, key) {
+
+            var n = 1;
+            while(true) {
             console.log(`${n++}:`);
             var input = scanf('%s');
-
             if(!input) {
                 console.log(`create to ${componentList.join(', ')} components`)
                 break;
@@ -52,6 +56,8 @@ switch(cmd) {
             componentList.push(input);
             
         }
+
+        });
 
         if(componentList.length > 0) {
             vue = vue.replace('/**components**/', componentList.join(',\n\t\t'));
