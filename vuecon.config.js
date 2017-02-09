@@ -1,46 +1,45 @@
 
 
 module.exports = {
-
     // vue component struct
-    base: {
+  base: {
         // style types: css, scss, sass, stylus
-        style: 'css'
+    style: 'css',
 
-        isScoped: false,
+    scoped: false,
 
-        props: false,
+    props: false,
 
-        computed: false,
+    computed: false,
 
-        method: false,
+    methods: false,
 
-        watch: false,
+    watch: false,
 
-        beforeCreate: false,
+    beforeCreate: false,
 
-        created: false,
+    created: false,
 
-        beforeMount: false,
+    beforeMount: false,
 
-        mounted: false,
+    mounted: false,
 
-        beforeUpdate: false,
+    beforeUpdate: false,
 
-        updated: false,
+    updated: false,
 
-        beforeDestroy: false,
+    beforeDestroy: false,
 
-        destroyed: false
-    }
+    destroyed: false,
+  },
 
-    vue: {
-        'vuex': true,
-        'vue-router': true,
-    },
+  vue: {
+    'vuex': true,
+    'vue-router': true,
+  },
 
-    use: {
-        element: true,
-        jquery: false
-    }
-}
+  use: {
+    element: true,
+    jquery: false,
+  },
+};
