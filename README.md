@@ -58,10 +58,53 @@ path:
 /path/to/project/src/VueContainer.vue
 ```
 
+### vuecon.config.js 설명
+```
+{
+    // 컴포넌트 생성시 기본적으로 생성여부를 설정할 수 있습니다.
+  base: {
+        
+    style: 'css',       // 스타일의 타입을 지정합니다: css, scss, sass, stylus
 
+    scoped: false,      // 각 기능의 값을 false로 설정시 vuecon에서 우회하여 .vue파일을 생성합니다.
 
+    props: false,
 
+    computed: false,
 
+    methods: false,
+
+    watch: false,
+
+    beforeCreate: false,
+
+    created: false,
+
+    beforeMount: false,
+
+    mounted: false,
+
+    beforeUpdate: false,
+
+    updated: false,
+
+    beforeDestroy: false,
+
+    destroyed: false,
+  },
+
+  vue: {
+    'vuex': true,
+    'vue-router': true,
+  },
+
+  use: {
+    element: true,
+    jquery: false,
+  },
+}
+```
+위에 있는 `vue.config.js`의 설정을 이용하면 보다 빠르고 간편하게 `.vue`파일을 생성하고 `vuejs`의 설정을 도와줍니다.
 
 
 # 개발예정
