@@ -5,18 +5,33 @@
 </template>
 
 <script>
-/**import**/
-/**component**/
+/*_import_*/
+/*_component_*/
 
 export default {
   name: '{id}',
+  /*_props_*/
   data () {
     return {
       msg: 'Welcome to Your Vue.js App With Vuecon'
     }
   },
+  /*_beforeCreate_*/
+  /*_created_*/
+  /*_beforeMount_*/
+  /*_mounted_*/
+  /*_beforeUpdate_*/
+  /*_updated_*/
+  /*_beforeDestroy_*/
+  /*_destroyed_*/
+  /*_watch_*/
   components: {
-    /**components**/
-  }
+    /*_components_*/
+  },
+  /*_methods_*/
+
 }
 </script>
+
+<style /*_style_*/ /*_scoped_*/>
+</style>

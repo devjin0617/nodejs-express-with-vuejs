@@ -3,12 +3,12 @@
 const cmd = process.argv[2];
 const name = process.argv[3];
 
-if(!cmd && !name) {
+if (!cmd && !name) {
     console.log('usage: vuecon [-h] command filename')
     return;
 }
 
-if(cmd == '-h') {
+if (cmd == '-h') {
     console.log('\n  usage: vuecon [-h] command filename');
     console.log('\n  command types:');
     console.log('\n    vue\t\tcreate vue file');
@@ -19,20 +19,20 @@ if(cmd == '-h') {
     return;
 }
 
-if(!name) {
+if (!name) {
     console.log('usage: vuecon [-h] command filename')
     return;
 }
 
 const fs = require('fs');
 const readline = require('readline');
-const scanf = require('scanf'); 
+const scanf = require('scanf');
 const config = require('./vuecon.config');
 const _ = require('lodash');
 
 let iTemplate = `import {name} from './components/{name}.vue'`;
 
-switch(cmd) {
+switch (cmd) {
     case 'vue':
 
         var vue = fs.readFileSync(`${__dirname}/vuecon-lib/vue.template.vc`, 'utf8');
@@ -42,32 +42,67 @@ switch(cmd) {
 
         console.log('what is component name? (exit is just enter)');
 
-        _.mapObject(config.bash, (value, key) {
-
-            var n = 1;
-            while(true) {
+        var n = 1;
+        while (true) {
             console.log(`${n++}:`);
             var input = scanf('%s');
-            if(!input) {
+            if (!input) {
                 console.log(`create to ${componentList.join(', ')} components`)
                 break;
             }
 
             componentList.push(input);
-            
+
         }
 
-        });
+        if (componentList.length > 0) {
+            vue = vue.replace('/*_components_*/', componentList.join(',\n\t\t'));
 
-        if(componentList.length > 0) {
-            vue = vue.replace('/**components**/', componentList.join(',\n\t\t'));
-
-            for(var i in componentList) {
+            for (var i in componentList) {
                 componentList[i] = iTemplate.replace(/{name}/g, componentList[i]);
             }
-            vue = vue.replace('/**component**/', componentList.join('\n'));
+            vue = vue.replace('/*_component_*/', componentList.join('\n'));
+        } else {
+            vue = vue.replace('/*_component_*/', '').replace('/*_components_*/', '');
         }
 
+        _.mapValues(config.base, (value, key) => {
+
+            if (typeof (value) == 'boolean' && !value) {
+                return;
+            }
+
+            switch (key) {
+                case 'style':
+                    var s = value;
+                    if (value == 'css') {
+                        s = `lang="${value}"`;
+                    }
+                    vue = vue.replace(`/*_${key}_*/`, s);
+                    break;
+                case 'scoped':
+                    vue = vue.replace(`/*_${key}_*/`, 'scoped');
+                    break;
+                case 'props':
+                    vue = vue.replace(`/*_${key}_*/`, `${value}: [],`);
+                    break;
+                case 'beforeCreate':
+                case 'created':
+                case 'beforeMount':
+                case 'mounted':
+                case 'beforeUpdate':
+                case 'updated':
+                case 'beforeDestroy':
+                case 'destroyed':
+                    vue = vue.replace(`/*_${key}_*/`, `${key}() {\n\n\t},`);
+                    break;
+                default:
+                    vue = vue.replace(`/*_${key}_*/`, `${key}: {\n\n\t},`);
+                    break;
+            }
+        });
+
+        vue = vue.replace(/([\s]+\/\*_\w+_\*\/[\n]{0,1})/g, '');
         fs.writeFileSync(`./src/${name}.vue`, vue);
 
         console.log(`make success :)`);
@@ -82,5 +117,5 @@ switch(cmd) {
 }
 
 function camelCaseToDash(str) {
-    return str.replace( /([a-z])([A-Z])/g, '$1-$2' ).toLowerCase();
+    return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }
