@@ -2,7 +2,14 @@
   <div id="app">
     <div class="container">
       <TopBar></TopBar>
-      <SideBar></SideBar>
+      <el-row class="tac">
+        <el-col :span="8">
+          <SideBar></SideBar>
+        </el-col>
+        <el-col :span="16">
+          <div>Content</div>
+        </el-col>
+      </el-row>
     </div>
   </div>
 </template>
