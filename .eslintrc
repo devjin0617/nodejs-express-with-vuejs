@@ -11,11 +11,21 @@
     "es6": true,
     "node": true
   },
-  "extends": "vue",
+  "extends": [
+    "vue"
+  ],
   "plugins": [
     "standard",
-    "promise"
+    "promise",
+    "html",
+    "vue"
   ],
+  "settings": {
+    "html/html-extensions": [
+      ".html",
+      ".vue"
+    ]
+  },
   "globals": {
     "document": false,
     "navigator": false,
