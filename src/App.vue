@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <TopBar></TopBar>
-    <SideBar></SideBar>
+    <div class="container">
+      <TopBar></TopBar>
+      <SideBar></SideBar>
+    </div>
   </div>
 </template>
 
@@ -22,3 +24,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.container {
+  min-width: 800px;
+}
+</style>

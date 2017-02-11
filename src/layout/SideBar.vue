@@ -2,7 +2,7 @@
   <div id="side-bar">
     <el-row class="tac">
         <el-col :span="8">
-            <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+            <el-menu default-active="2" @open="" @close="">
             <el-submenu index="1">
                 <template slot="title"><i class="el-icon-message"></i>Navigator One</template>
                 <el-menu-item-group title="Group One">
@@ -35,3 +35,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.el-menu {
+  height: 100vh;
+}
+</style>
