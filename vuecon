@@ -19,7 +19,7 @@ if (cmd == '-h') {
     return;
 }
 
-if (!name) {
+if (cmd != 'router' && !name) {
     console.log('usage: vuecon [-h] command filename')
     return;
 }
@@ -111,6 +111,15 @@ switch (cmd) {
     case 'plugin':
         break;
     case 'router':
+
+        var dir = './src/lib';
+
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir);
+        }
+
+        fs.writeFileSync(`./src/lib/router.js`, '');
+
         break;
     default:
         break;
